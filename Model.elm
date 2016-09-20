@@ -1,5 +1,6 @@
 module Model exposing (..)
 
+import Debug exposing (..)
 import Util exposing (zip)
 
 
@@ -116,3 +117,26 @@ applyRules nbLivingNeighbours cell =
                             Dead
     in
         { cell | state = newState }
+
+
+flip : State -> State
+flip state =
+    case state of
+        Alive ->
+            Dead
+
+        Dead ->
+            Alive
+
+
+toggleState : Model -> PositionedCell -> Model
+toggleState model cell =
+    let
+        toggled =
+            log "toggled" { cell | state = flip cell.state }
+
+        others =
+            model.world
+                |> List.filter (\c -> c /= cell)
+    in
+        { model | world = toggled :: others }

@@ -35,6 +35,9 @@ update msg model =
         NewWorld ->
             ( model, randomStateGenerator model.dimension )
 
+        ToggleState cell ->
+            ( toggleState model cell, Cmd.none )
+
 
 subscriptions : Model -> Sub Msg
 subscriptions model =

@@ -11,28 +11,33 @@ type Msg
     | Tick
     | TogglePause
     | NewWorld
+    | ToggleState PositionedCell
 
 
-print : State -> Html Msg
-print state =
+print : PositionedCell -> Html Msg
+print cell =
     let
         ( txt, color ) =
-            case state of
+            case cell.state of
                 Alive ->
                     ( "👾", "green" )
 
                 Dead ->
                     ( "👻", "grey" )
     in
-        span [ style [ ( "color", color ) ] ] [ text txt ]
+        span
+            [ style [ ( "color", color ) ]
+            , onClick (ToggleState cell)
+            ]
+            [ text txt ]
 
 
 row : List PositionedCell -> Int -> Html Msg
 row cells rowNumber =
     cells
-        |> List.filter (\r -> r.location.x == rowNumber)
-        |> List.sortBy (\r -> r.location.y)
-        |> List.map (\r -> print r.state)
+        |> List.filter (\c -> c.location.x == rowNumber)
+        |> List.sortBy (\c -> c.location.y)
+        |> List.map print
         |> div []
 
 
@@ -52,15 +57,15 @@ view model =
                 "Pause"
     in
         div []
-            [ div
-                [ style [ ( "font-size", "4em" ) ] ]
-                ([0..nbRows]
-                    |> List.map (row model.world)
-                )
-            , button [ onClick TogglePause ]
+            [ button [ onClick TogglePause ]
                 [ text pauseMessage
                 ]
             , button [ onClick NewWorld ]
                 [ text "Seed new world"
                 ]
+            , div
+                [ style [ ( "font-size", "4em" ) ] ]
+                ([0..nbRows]
+                    |> List.map (row model.world)
+                )
             ]
