@@ -13,14 +13,18 @@ type Msg
     | NewWorld
 
 
-print : State -> String
+print : State -> Html Msg
 print state =
-    case state of
-        Alive ->
-            "👾"
+    let
+        ( txt, color ) =
+            case state of
+                Alive ->
+                    ( "👾", "green" )
 
-        Dead ->
-            "👻"
+                Dead ->
+                    ( "👻", "grey" )
+    in
+        span [ style [ ( "color", color ) ] ] [ text txt ]
 
 
 row : List PositionedCell -> Int -> Html Msg
@@ -29,7 +33,6 @@ row cells rowNumber =
         |> List.filter (\r -> r.location.x == rowNumber)
         |> List.sortBy (\r -> r.location.y)
         |> List.map (\r -> print r.state)
-        |> List.map text
         |> div []
 
 
