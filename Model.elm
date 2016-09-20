@@ -1,6 +1,5 @@
 module Model exposing (..)
 
-import Debug exposing (..)
 import Util exposing (zip)
 
 
@@ -133,7 +132,7 @@ toggleState : Model -> PositionedCell -> Model
 toggleState model cell =
     let
         toggled =
-            log "toggled" { cell | state = flip cell.state }
+            { cell | state = flip cell.state }
 
         others =
             model.world
