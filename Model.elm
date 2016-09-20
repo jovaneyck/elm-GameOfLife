@@ -140,3 +140,13 @@ toggleState model cell =
                 |> List.filter (\c -> c /= cell)
     in
         { model | world = toggled :: others }
+
+
+kill : PositionedCell -> PositionedCell
+kill cell =
+    { cell | state = Dead }
+
+
+killCells : Model -> Model
+killCells model =
+    { model | world = model.world |> List.map kill }

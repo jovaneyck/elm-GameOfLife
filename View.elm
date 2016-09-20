@@ -12,6 +12,7 @@ type Msg
     | TogglePause
     | NewWorld
     | ToggleState PositionedCell
+    | KillCells
 
 
 print : PositionedCell -> Html Msg
@@ -59,6 +60,9 @@ view model =
         div []
             [ button [ onClick TogglePause ]
                 [ text pauseMessage
+                ]
+            , button [ onClick KillCells ]
+                [ text "Kill all cells"
                 ]
             , button [ onClick NewWorld ]
                 [ text "Seed new world"

@@ -38,6 +38,9 @@ update msg model =
         ToggleState cell ->
             ( toggleState model cell, Cmd.none )
 
+        KillCells ->
+            ( killCells model, Cmd.none )
+
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
