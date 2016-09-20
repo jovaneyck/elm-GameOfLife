@@ -10,6 +10,7 @@ type Msg
     = Seed (List State)
     | Tick
     | TogglePause
+    | NewWorld
 
 
 print : State -> String
@@ -55,5 +56,8 @@ view model =
                 )
             , button [ onClick TogglePause ]
                 [ text pauseMessage
+                ]
+            , button [ onClick NewWorld ]
+                [ text "Seed new world"
                 ]
             ]

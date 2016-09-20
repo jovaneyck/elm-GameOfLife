@@ -32,6 +32,9 @@ update msg model =
         TogglePause ->
             ( { model | paused = not model.paused }, Cmd.none )
 
+        NewWorld ->
+            ( model, randomStateGenerator model.dimension )
+
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
