@@ -1,4 +1,4 @@
 # elm-GameOfLife
-Very basic implementation of game of life to get started with Elm
+A basic implementation of game of life I wrote to get started with [Elm](http://elm-lang.org/).
 
-Watch the live demo [here](https://jovaneyck.github.io/elm-gol.html)
+You can play around with the end result [here](https://jovaneyck.github.io/elm-gol.html).
