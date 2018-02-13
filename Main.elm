@@ -4,12 +4,12 @@ import Model exposing (..)
 import View exposing (..)
 import Time exposing (Time, second)
 import Random exposing (..)
-import Html.App as App
+import Html
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    App.program
+    Html.program
         { init = ( emptyWorld 10, randomStateGenerator 10 )
         , update = update
         , subscriptions = subscriptions

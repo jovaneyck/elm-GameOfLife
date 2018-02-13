@@ -69,7 +69,7 @@ view model =
                 ]
             , div
                 [ style [ ( "font-size", "4em" ) ] ]
-                ([0..nbRows]
+                ((List.range 0 nbRows)
                     |> List.map (row model.world)
                 )
             ]

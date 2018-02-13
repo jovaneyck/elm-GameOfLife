@@ -38,9 +38,9 @@ initModel : Model -> List State -> Model
 initModel model states =
     let
         allCoordinates =
-            [1..model.dimension]
+            (List.range 1 model.dimension)
                 |> List.concatMap
-                    (\x -> [1..model.dimension] |> List.map (\y -> { x = x, y = y }))
+                    (\x -> (List.range 1 model.dimension) |> List.map (\y -> { x = x, y = y }))
 
         cells =
             allCoordinates
